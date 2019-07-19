@@ -1,11 +1,22 @@
-% cell segmentation by VAR_MAX_COVAR
-% selection of pixel with a high variance
-% non-maximum suppression for sparsal classification
-% segmetal covariance
+% this function performs a data segmentation according to skewness and
+% variance in signals derived from frames sequences
+
+% SYNTAX
+% [data, sizeParameters] = cellSeg(data);
+
+%DESCRIPTION
+% input data is a NxMx3 Matrix representing a stack of frames.
+% output : returns a data struct containinga list of pxl for each ROI
+% (.pxlList) and the mask (template for dsplaying) (.show)
+% 
+%data points are rearranged resulting in an matrix with intensity values stored in rows for each pixel in columns
+%for each pixel variance and skewness are computed and thresholded (selection)
+%region of interests are defined including a minimum value of pixels
+
 
 function  [data, sizeParameters] = cellSeg(data)
 
-%hier multi einfügen: for exp = 1:length(dataComplete)
+%hier multi einfÃ¼gen: for exp = 1:length(dataComplete)
 [timeVectors, sizeParameters] = LoadTimeVec(data, 0); 
 
 showHist = 0;
